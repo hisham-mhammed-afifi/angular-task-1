@@ -1,4 +1,22 @@
 <!-- <router-outlet></router-outlet> -->
-<app-header></app-header>
-<app-products></app-products>
+<app-header
+  [clientName]="clientName"
+  [categoryList]="categoryList"
+></app-header>
+<input
+  [(ngModel)]="clientName"
+  class="form-control me-2"
+  type="search"
+  placeholder="Enter your name..."
+/>
+<div *ngIf="isPurshased; else elseBlock">
+  <h3 class="display-3">
+    Thanks for purchasing from our Store
+    {{ clientName }}
+  </h3>
+</div>
+<ng-template #elseBlock>
+  <app-products [productList]="productList"></app-products>
+</ng-template>
+<a (click)="buy()" class="btn btn-primary my-3">Buy</a>
 <app-footer></app-footer>
