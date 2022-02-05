@@ -10,8 +10,8 @@ import { ProductsComponent } from './products/products.component';
 import { NavBarComponent } from './header/nav-bar/nav-bar.component';
 import { CarouselComponent } from './header/carousel/carousel.component';
 import { ProductComponent } from './products/product/product.component';
-import { HighlightDirective } from './highlight.directive';
-import { ArrayPipe } from './pipes/array.pipe';
+import { FilterPipe } from './pipes/filter.pipe';
+import { HightLightDirective } from './directives/hight-light.directive';
 
 @NgModule({
   declarations: [
@@ -22,8 +22,8 @@ import { ArrayPipe } from './pipes/array.pipe';
     NavBarComponent,
     CarouselComponent,
     ProductComponent,
-    HighlightDirective,
-    ArrayPipe,
+    FilterPipe,
+    HightLightDirective,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],

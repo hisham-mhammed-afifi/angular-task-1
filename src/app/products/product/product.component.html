@@ -1,12 +1,13 @@
-<!-- <div class="p-2">
+<div class="p-2">
   <div class="card">
-    <img [src]="productList[1].image" class="card-img-top" alt="..." />
+    <img [src]="product.image" class="card-img-top" alt="..." />
     <div class="card-body">
-      <h5 class="card-title">{{ storeName }}</h5>
+      <h5 class="card-title">{{ product.name }}</h5>
+      <p class="card-title">{{ storeName }}</p>
       <p class="card-text" *ngIf="discount != 'No Discount'">
         We offer an explicit discount of: {{ discount }}
       </p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+      <button (click)="addToCart()" class="btn btn-primary">add</button>
     </div>
   </div>
-</div> -->
+</div>

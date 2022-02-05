@@ -1,6 +1,8 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IProduct } from '../../app/sharedClassesAndTypes/IProduct';
 import { DiscountOffers } from '../../app/sharedClassesAndTypes/DiscountOffers';
+import { ProductService } from '../services/product.service';
+import { Subject, BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-products',
@@ -8,11 +10,32 @@ import { DiscountOffers } from '../../app/sharedClassesAndTypes/DiscountOffers';
   styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent implements OnInit {
-  @Input() discount: DiscountOffers = DiscountOffers.ten;
-  @Input() productList: IProduct[] = [];
-  @Input() isPurshased: Boolean = false;
-  @Output() products: IProduct[] = [];
-  constructor() {}
+  product: any = {};
+  discount: DiscountOffers = DiscountOffers.fifteen;
+  storeName: String = 'SAMSUNG';
+  private productId = new Subject<number>();
 
-  ngOnInit(): void {}
+  products: any = [];
+  constructor(private productService: ProductService) {}
+
+  renderProduct(id: number): any {
+    this.productId.next(id);
+  }
+
+  ngOnInit(): void {
+    this.renderValues();
+
+    this.productId.subscribe(
+      (val) => console.log(val)
+
+      // switchMap((productId: number) =>
+      //   this.productService.getProductById(productId)
+      // )
+    );
+  }
+  renderValues(): any {
+    return this.productService
+      .getAllProducts()
+      .subscribe((p: any) => (this.products = p));
+  }
 }

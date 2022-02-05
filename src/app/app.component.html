@@ -1,22 +1,9 @@
-<!-- <router-outlet></router-outlet> -->
-<app-header
-  [clientName]="clientName"
-  [categoryList]="categoryList"
-></app-header>
-<input
-  [(ngModel)]="clientName"
-  class="form-control me-2"
-  type="search"
-  placeholder="Enter your name..."
-/>
-<div *ngIf="isPurshased; else elseBlock">
-  <h3 class="display-3">
-    Thanks for purchasing from our Store
-    {{ clientName }}
-  </h3>
-</div>
-<ng-template #elseBlock>
-  <app-products [productList]="productList"></app-products>
-</ng-template>
-<a (click)="buy()" class="btn btn-primary my-3">Buy</a>
+<app-header></app-header>
+<button (click)="goBack()" class="btn btn-success m-3">Back</button>
+<button (click)="showProducts()" class="btn btn-success m-3">
+  {{ show ? "Hide" : "Show" }} all products
+</button>
+<!-- <app-products *ngIf="show"></app-products> -->
+<router-outlet *ngIf="show"></router-outlet>
+
 <app-footer></app-footer>

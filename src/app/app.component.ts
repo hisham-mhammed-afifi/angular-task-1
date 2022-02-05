@@ -2,6 +2,7 @@ import { Component, Output } from '@angular/core';
 import { DiscountOffers } from '../app/sharedClassesAndTypes/DiscountOffers';
 import { IProduct } from '../app/sharedClassesAndTypes/IProduct';
 import { ICategory } from '../app/sharedClassesAndTypes/ICategory';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'myFirstApp-root',
@@ -9,6 +10,8 @@ import { ICategory } from '../app/sharedClassesAndTypes/ICategory';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  show: Boolean = false;
+
   @Output() discount: DiscountOffers;
   @Output() storeName: String;
   @Output() storeLogo: String;
@@ -17,7 +20,7 @@ export class AppComponent {
   @Output() clientName: String = '';
   @Output() isPurshased: Boolean;
 
-  constructor() {
+  constructor(private location: Location) {
     this.discount = DiscountOffers.ten;
     this.storeName = 'Mobile Store';
     this.storeLogo = 'MOBO';
@@ -63,5 +66,21 @@ export class AppComponent {
   buy() {
     this.isPurshased = true;
     console.log('added');
+  }
+
+  //   subject.subscribe(console.log);
+  // subject.subscribe(console.log);
+
+  // subject.next(456);
+
+  // subject.subscribe(console.log);
+
+  // subject.next(789);
+
+  showProducts() {
+    this.show = !this.show;
+  }
+  goBack(): void {
+    this.location.back();
   }
 }

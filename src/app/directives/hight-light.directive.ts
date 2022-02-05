@@ -1,9 +1,9 @@
 import { Directive, ElementRef } from '@angular/core';
 
 @Directive({
-  selector: '[appHighlight]',
+  selector: '[appHightLight]',
 })
-export class HighlightDirective {
+export class HightLightDirective {
   constructor(private el: ElementRef) {
     this.el.nativeElement.onmouseover = function () {
       this.className += ' blue';

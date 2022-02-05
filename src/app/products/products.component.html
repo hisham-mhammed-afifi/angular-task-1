@@ -1,11 +1,14 @@
 <div class="row row-cols-2 row-cols-sm-3 g-4 mt-5">
   <!-- <app-product *ngFor="let product of productList" class="col"></app-product> -->
 
-  <div *ngFor="let product of productList" class="col">
+  <div *ngFor="let product of products" class="col">
     <div appHighlight class="card">
       <img [src]="product.image" class="card-img-top" />
       <div class="card-body">
-        <h5 class="card-title">{{ product.name | uppercase }}</h5>
+        <a routerLink="/{{ product.id }}">
+          <h5 class="card-title">{{ product.name | uppercase }}</h5>
+        </a>
+
         <p class="card-text" *ngIf="discount != 'No Discount'">
           We offer an explicit discount of: {{ discount }}
         </p>
