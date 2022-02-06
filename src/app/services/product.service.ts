@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { IProduct } from '../sharedClassesAndTypes/IProduct';
 
 interface OrderCount {
@@ -10,8 +10,6 @@ interface OrderCount {
   providedIn: 'root',
 })
 export class ProductService {
-  subject = new BehaviorSubject(0);
-  sub = new Subject();
   products = [
     {
       id: 1,
@@ -44,17 +42,17 @@ export class ProductService {
   ];
 
   constructor() {}
-  private _orderCount = new BehaviorSubject<OrderCount>({
+  private orderCountObserver = new BehaviorSubject<OrderCount>({
     cartTotal: 0,
   });
-  private _orderCount$ = this._orderCount.asObservable();
+  private orderCountObservable = this.orderCountObserver.asObservable();
 
   getCount(): Observable<OrderCount> {
-    return this._orderCount$;
+    return this.orderCountObservable;
   }
 
   setCount(Val: OrderCount) {
-    return this._orderCount.next(Val);
+    return this.orderCountObserver.next(Val);
   }
 
   getAllProducts(): Observable<any> {

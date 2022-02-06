@@ -1,0 +1,15 @@
+<h3>{{ post.title }}</h3>
+<p class="lead">{{ post.body }}</p>
+
+<hr class="dropdown-divider" />
+
+<h3 class="text-info">All Comments</h3>
+
+<div class="card mb-3 ms-5 shadow" *ngFor="let comment of comments">
+  <div class="card-header bg-dark text-white">
+    <p>{{ comment.email }}</p>
+  </div>
+  <div class="card-body">
+    {{ comment.body }}
+  </div>
+</div>

@@ -1,6 +1,8 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand mb-3" routerLinkActive="active" routerLink="/home"
+      >Home</a
+    >
     <button
       class="navbar-toggler"
       type="button"
@@ -15,11 +17,21 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link" routerLinkActive="active" routerLink="/products"
+            >Products</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <a class="nav-link" routerLinkActive="active" routerLink="/users"
+            >Users</a
+          >
         </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" routerLink="/posts"
+            >Posts</a
+          >
+        </li>
+
         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
@@ -37,14 +49,15 @@
             </li>
           </ul>
         </li>
-        <li class="nav-item text-white pt-3 pe-3">{{ clientName }}</li>
+        <li class="nav-item text-white mt-2">Cart: {{ cartTotal }}</li>
+        <!-- <li class="nav-item text-white pt-3 pe-3">{{ clientName }}</li> -->
       </ul>
-      <input
+      <!-- <input
         [(ngModel)]="clientName"
         class="form-control me-2"
         type="search"
         placeholder="Enter your name..."
-      />
+      /> -->
     </div>
   </div>
 </nav>

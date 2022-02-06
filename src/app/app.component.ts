@@ -10,8 +10,6 @@ import { Location } from '@angular/common';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  show: Boolean = false;
-
   @Output() discount: DiscountOffers;
   @Output() storeName: String;
   @Output() storeLogo: String;
@@ -20,7 +18,7 @@ export class AppComponent {
   @Output() clientName: String = '';
   @Output() isPurshased: Boolean;
 
-  constructor(private location: Location) {
+  constructor() {
     this.discount = DiscountOffers.ten;
     this.storeName = 'Mobile Store';
     this.storeLogo = 'MOBO';
@@ -76,11 +74,4 @@ export class AppComponent {
   // subject.subscribe(console.log);
 
   // subject.next(789);
-
-  showProducts() {
-    this.show = !this.show;
-  }
-  goBack(): void {
-    this.location.back();
-  }
 }

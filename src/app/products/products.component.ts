@@ -3,6 +3,7 @@ import { IProduct } from '../../app/sharedClassesAndTypes/IProduct';
 import { DiscountOffers } from '../../app/sharedClassesAndTypes/DiscountOffers';
 import { ProductService } from '../services/product.service';
 import { Subject, BehaviorSubject } from 'rxjs';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-products',
@@ -10,13 +11,17 @@ import { Subject, BehaviorSubject } from 'rxjs';
   styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent implements OnInit {
+  show: Boolean = true;
   product: any = {};
   discount: DiscountOffers = DiscountOffers.fifteen;
   storeName: String = 'SAMSUNG';
   private productId = new Subject<number>();
 
   products: any = [];
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private location: Location
+  ) {}
 
   renderProduct(id: number): any {
     this.productId.next(id);
@@ -37,5 +42,12 @@ export class ProductsComponent implements OnInit {
     return this.productService
       .getAllProducts()
       .subscribe((p: any) => (this.products = p));
+  }
+
+  showProducts() {
+    this.show = !this.show;
+  }
+  goBack(): void {
+    this.location.back();
   }
 }

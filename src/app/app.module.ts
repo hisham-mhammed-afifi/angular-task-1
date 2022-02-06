@@ -12,6 +12,12 @@ import { CarouselComponent } from './header/carousel/carousel.component';
 import { ProductComponent } from './products/product/product.component';
 import { FilterPipe } from './pipes/filter.pipe';
 import { HightLightDirective } from './directives/hight-light.directive';
+import { HomeComponent } from './home/home.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { UsersComponent } from './users/users.component';
+import { PostsComponent } from './posts/posts.component';
+import { CommentsComponent } from './posts/comments/comments.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,8 +30,13 @@ import { HightLightDirective } from './directives/hight-light.directive';
     ProductComponent,
     FilterPipe,
     HightLightDirective,
+    HomeComponent,
+    NotFoundComponent,
+    UsersComponent,
+    PostsComponent,
+    CommentsComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })
