@@ -18,6 +18,11 @@ export class PostService {
     const posts = this._http
       .get<IPost[]>('https://jsonplaceholder.typicode.com/posts')
       .pipe(
+        //   map(itemData => {
+        //     return itemData.map(value => {
+        //         return new ListingItem(value.label, value.market, value.name);
+        //     })
+        // }),
         catchError((err) => {
           throw Error('عنك ايرور -- لو سمحت شوف ال URL');
         })

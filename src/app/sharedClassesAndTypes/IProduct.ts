@@ -4,6 +4,7 @@ export interface IProduct {
   quantity: number;
   price: number;
   image: string;
+  disc: string;
 }
 
 // i)	ID – of type number.

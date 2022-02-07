@@ -1,25 +1,9 @@
 <button (click)="goBack()" class="btn btn-success m-3">Back</button>
-<button (click)="showProducts()" class="btn btn-success m-3">
-  {{ show ? "Hide" : "Show" }} all products
-</button>
+<a routerLink="./with-discount" class="btn btn-success m-3"> With Discount </a>
+<a routerLink="./without-discount" class="btn btn-warning m-3">
+  Without Discount
+</a>
 
 <!-- ////////////////////////////////////// -->
 
-<div class="row row-cols-2 g-4 mt-5" *ngIf="show">
-  <!-- <app-product *ngFor="let product of productList" class="col"></app-product> -->
-
-  <div *ngFor="let product of products" class="col">
-    <div appHighlight class="card">
-      <img [src]="product.image" class="card-img-top" />
-      <div class="card-body">
-        <a routerLink="./{{ product.id }}">
-          <h5 class="card-title">{{ product.name | uppercase }}</h5>
-        </a>
-
-        <p class="card-text" *ngIf="discount != 'No Discount'">
-          We offer an explicit discount of: {{ discount }}
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
+<router-outlet></router-outlet>

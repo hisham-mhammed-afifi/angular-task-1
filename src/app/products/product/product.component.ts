@@ -23,28 +23,26 @@ export class ProductComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getsingleProduct();
-
-    this.subscription = this.productService.getCount().subscribe((c) => {
-      this.cartTotal = c.cartTotal;
-    });
+    // this.getsingleProduct();
+    // this.subscription = this.productService.getCount().subscribe((c) => {
+    //   this.cartTotal = c.cartTotal;
+    // });
   }
 
-  getsingleProduct(): any {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    console.log(this.productService.getProductById(id));
+  // getsingleProduct(): any {
+  //   const id = Number(this.route.snapshot.paramMap.get('id'));
 
-    return this.productService
-      .getProductById(id)
-      .subscribe((p: any) => (this.product = p));
-  }
+  //   return this.productService
+  //     .getProductById(id)
+  //     .subscribe((p: any) => (this.product = p));
+  // }
 
-  addToCart() {
-    let c = {
-      cartTotal: this.cartTotal + 1,
-    };
-    this.productService.setCount(c);
-  }
+  // addToCart() {
+  //   let c = {
+  //     cartTotal: this.cartTotal + 1,
+  //   };
+  //   this.productService.setCount(c);
+  // }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();

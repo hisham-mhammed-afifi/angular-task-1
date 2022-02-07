@@ -18,6 +18,10 @@ import { UsersComponent } from './users/users.component';
 import { PostsComponent } from './posts/posts.component';
 import { CommentsComponent } from './posts/comments/comments.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { WithDiscountComponent } from './products/with-discount/with-discount.component';
+import { WithoutDiscountComponent } from './products/without-discount/without-discount.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +39,10 @@ import { HttpClientModule } from '@angular/common/http';
     UsersComponent,
     PostsComponent,
     CommentsComponent,
+    LoginComponent,
+    RegisterComponent,
+    WithDiscountComponent,
+    WithoutDiscountComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],

@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row row-cols-1">
     <div class="col" *ngFor="let post of posts">
-      <div class="card mb-3 shadow">
+      <div class="card mb-3 shadow" [class.bg-warning]="post.id == postId">
         <div class="card-header bg-dark text-white">
           <h3>{{ post.title }}</h3>
-          <a routerLink="./{{ post.id }}" class="btn btn-sm btn-primary">
+          <a routerLink="/posts/{{ post.id }}" class="btn btn-sm btn-primary">
             View
           </a>
         </div>

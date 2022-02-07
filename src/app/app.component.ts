@@ -13,7 +13,6 @@ export class AppComponent {
   @Output() discount: DiscountOffers;
   @Output() storeName: String;
   @Output() storeLogo: String;
-  @Output() productList: IProduct[];
   @Output() categoryList: ICategory[];
   @Output() clientName: String = '';
   @Output() isPurshased: Boolean;
@@ -22,29 +21,7 @@ export class AppComponent {
     this.discount = DiscountOffers.ten;
     this.storeName = 'Mobile Store';
     this.storeLogo = 'MOBO';
-    this.productList = [
-      {
-        id: 1,
-        name: 'samsung note10',
-        quantity: 10,
-        price: 10000,
-        image: 'assets/images/image-one.jpg',
-      },
-      {
-        id: 2,
-        name: 'OPPO F9',
-        quantity: 10,
-        price: 10000,
-        image: 'assets/images/image-two.jpg',
-      },
-      {
-        id: 3,
-        name: 'iPhone 13',
-        quantity: 10,
-        price: 10000,
-        image: 'assets/images/image-three.jpg',
-      },
-    ];
+
     this.categoryList = [
       {
         id: 1,

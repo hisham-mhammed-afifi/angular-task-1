@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { IProduct } from '../../app/sharedClassesAndTypes/IProduct';
 import { DiscountOffers } from '../../app/sharedClassesAndTypes/DiscountOffers';
 import { ProductService } from '../services/product.service';
-import { Subject, BehaviorSubject } from 'rxjs';
 import { Location } from '@angular/common';
 
 @Component({
@@ -15,29 +14,28 @@ export class ProductsComponent implements OnInit {
   product: any = {};
   discount: DiscountOffers = DiscountOffers.fifteen;
   storeName: String = 'SAMSUNG';
-  private productId = new Subject<number>();
 
-  products: any = [];
+  products: IProduct[] = [];
+
   constructor(
     private productService: ProductService,
     private location: Location
   ) {}
 
-  renderProduct(id: number): any {
-    this.productId.next(id);
-  }
+  // renderProduct(id: number): any {
+  //   this.productId.next(id);
+  // }
 
   ngOnInit(): void {
     this.renderValues();
-
-    this.productId.subscribe(
-      (val) => console.log(val)
-
-      // switchMap((productId: number) =>
-      //   this.productService.getProductById(productId)
-      // )
-    );
+    // this.productId.subscribe(
+    //   (val) => console.log(val)
+    //   // switchMap((productId: number) =>
+    //   //   this.productService.getProductById(productId)
+    //   // )
+    // );
   }
+
   renderValues(): any {
     return this.productService
       .getAllProducts()

@@ -1,70 +1,75 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { catchError, map, Observable } from 'rxjs';
 import { IProduct } from '../sharedClassesAndTypes/IProduct';
 
-interface OrderCount {
-  cartTotal: number;
-}
+// interface OrderCount {
+//   cartTotal: number;
+// }
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
-  products = [
-    {
-      id: 1,
-      name: 'samsung note10',
-      quantity: 10,
-      price: 10000,
-      image: 'assets/images/image-one.jpg',
-    },
-    {
-      id: 2,
-      name: 'OPPO F9',
-      quantity: 10,
-      price: 10000,
-      image: 'assets/images/image-two.jpg',
-    },
-    {
-      id: 3,
-      name: 'iPhone 13',
-      quantity: 10,
-      price: 10000,
-      image: 'assets/images/image-three.jpg',
-    },
-    {
-      id: 4,
-      name: 'samsung note10',
-      quantity: 10,
-      price: 10000,
-      image: 'assets/images/image-one.jpg',
-    },
-  ];
+  constructor(private _http: HttpClient) {}
 
-  constructor() {}
-  private orderCountObserver = new BehaviorSubject<OrderCount>({
-    cartTotal: 0,
-  });
-  private orderCountObservable = this.orderCountObserver.asObservable();
+  selectwithDisc() {
+    return this.getAllProducts().pipe(
+      map((products) =>
+        products.filter((product) => product.disc != 'No Discount')
+      ),
+      catchError((err) => {
+        console.error(err.message);
 
-  getCount(): Observable<OrderCount> {
-    return this.orderCountObservable;
+        throw Error('ay haga');
+      })
+    );
   }
 
-  setCount(Val: OrderCount) {
-    return this.orderCountObserver.next(Val);
+  selectwithoutDisc() {
+    return this.getAllProducts().pipe(
+      map((products) =>
+        products.filter((product) => product.disc == 'No Discount')
+      ),
+      catchError((err) => {
+        console.error(err.message);
+        throw Error('ay haga');
+      })
+    );
   }
 
-  getAllProducts(): Observable<any> {
-    return of(this.products).pipe();
+  // getCount(): Observable<OrderCount> {
+  //   return this.orderCountObservable;
+  // }
+
+  // setCount(Val: OrderCount) {
+  //   return this.orderCountObserver.next(Val);
+  // }
+
+  getAllProducts(): Observable<IProduct[]> {
+    const products = this._http
+      .get<IProduct[]>('../../assets/db/products.json')
+      .pipe(
+        catchError((err: any) => {
+          console.error(err.message);
+
+          throw Error('Errrrrrrrrrrrrror');
+        })
+      );
+    return products;
   }
 
-  getProductById(id: number): Observable<any> {
-    // if (isNaN(id)) return console.error(`${id} is not a number`);
-
-    const product = this.products.find((p: any) => p.id === id);
-    // if (!product) return console.error(`There is no product with id: ${id}`);
-
-    return of(product).pipe();
-  }
+  // getSingleProduct(id: number): Observable<IProduct[]> {
+  //   const products = this._http
+  //     .get<IProduct[]>('../../assets/db/products.json')
+  //     .pipe(
+  //       catchError((err) => {
+  //         throw Error('عنك ايرور -- لو سمحت شوف ال URL');
+  //       })
+  //     );
+  //     const product = products.filter((p: any)=>{
+  //       return p.id === id
+  //     })
+  //   return product;
+  // }
 }

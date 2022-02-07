@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { PostService } from 'src/app/services/post.service';
 
 @Component({
@@ -10,28 +10,40 @@ import { PostService } from 'src/app/services/post.service';
 export class CommentsComponent implements OnInit {
   comments: any[] = [];
   post: any = {};
+  postId: number = 3;
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private postService: PostService
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.route.paramMap.subscribe((params: any) => {
+      console.log(params.get('id'));
+
+      this.postId = parseInt(params.get('id'));
+    });
     this.getPost();
     this.getpostComments();
+    this.route.paramMap.subscribe((params) => {
+      params.get('id');
+    });
   }
 
   getPost() {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.postService.getSinglePost(id).subscribe((post) => {
+    this.postService.getSinglePost(this.postId).subscribe((post) => {
       this.post = post;
     });
   }
 
   getpostComments() {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.postService.getComments(id).subscribe((comments) => {
+    this.postService.getComments(this.postId).subscribe((comments) => {
       this.comments = comments;
     });
+  }
+
+  goBack(id: number) {
+    this.router.navigate(['/posts', { id }]);
   }
 }
