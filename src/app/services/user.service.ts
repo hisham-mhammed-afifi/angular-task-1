@@ -19,4 +19,14 @@ export class UserService {
       .pipe();
     return users;
   }
+  getUsers(): Observable<IUser[]> {
+    const users = this._http.get<IUser[]>('http://localhost:3000/users').pipe();
+    return users;
+  }
+  register(newUser: any): Observable<IUser[]> {
+    const users = this._http
+      .post<IUser[]>('http://localhost:3000/users', newUser)
+      .pipe();
+    return users;
+  }
 }

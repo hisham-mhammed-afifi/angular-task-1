@@ -1,18 +1,84 @@
 <div class="row mt-3 justify-content-center">
   <div class="col-md-6">
-    <h3 class="display-3">Login Form</h3>
-    <form>
-      <div class="mb-3">
-        <label for="email" class="form-label">Email </label>
-        <input type="email" class="form-control" id="email" />
-      </div>
-      <!--  -->
-      <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
-        <input type="password" class="form-control" id="password" />
-      </div>
+    <div class="card shadow m-3 p-3 p-md-5">
+      <h3 class="display-5 mb-5">Login Form</h3>
+      <form #loginForm="ngForm" (submit)="checkLogin()">
+        <div class="mb-3">
+          <label for="email" class="form-label" pattern="pattern">Email </label>
+          <input
+            #email="ngModel"
+            [class.is-invalid]="email.touched && email.invalid"
+            [class.is-valid]="email.touched && email.valid"
+            required
+            [pattern]="pattern"
+            name="email"
+            [(ngModel)]="newUser.email"
+            type="email"
+            class="form-control"
+            id="email"
+          />
+        </div>
+        <!-- /////////////////////////////////////////// -->
+        <div
+          [hidden]="email.valid || email.untouched"
+          class="alert alert-danger"
+          role="alert"
+        >
+          <ng-container *ngIf="email.errors && email.errors['required']"
+            >Email field is Required.</ng-container
+          >
+          <ng-container *ngIf="email.errors && email.errors['pattern']"
+            >Invalid, Please provide a valid Email.</ng-container
+          >
+        </div>
+        <!--  -->
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input
+            #password="ngModel"
+            [class.is-invalid]="password.touched && password.invalid"
+            [class.is-valid]="password.touched && password.valid"
+            required
+            (input)="checkPassword($event)"
+            minlength="3"
+            maxlength="10"
+            name="password"
+            [(ngModel)]="newUser.password"
+            type="password"
+            class="form-control"
+            id="password"
+          />
+        </div>
+        <!-- /////////////////////////////////////////// -->
+        <div
+          [hidden]="password.valid || password.untouched"
+          class="alert alert-danger"
+          role="alert"
+        >
+          <ng-container *ngIf="password.errors && password.errors['required']"
+            >Password field is Required.</ng-container
+          >
+          <ng-container *ngIf="password.errors && password.errors['minlength']"
+            >You enterd {{ password.errors["minlength"].actualLength }} chars,
+            Password must be at least
+            {{ password.errors["minlength"].requiredLength }}
+            chars.</ng-container
+          >
+        </div>
+        <div class="alert alert-danger" *ngIf="wrongMsg">
+          Wrong Email or Password.
+        </div>
 
-      <button type="submit" class="btn btn-primary">login</button>
-    </form>
+        <button
+          [disabled]="!loginForm.form.valid"
+          [class.btn-danger]="!loginForm.form.valid"
+          [class.btn-success]="loginForm.form.valid"
+          type="submit"
+          class="btn btn-primary px-5"
+        >
+          login
+        </button>
+      </form>
+    </div>
   </div>
 </div>
