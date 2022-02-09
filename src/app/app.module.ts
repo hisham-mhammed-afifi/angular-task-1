@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +22,9 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { WithDiscountComponent } from './products/with-discount/with-discount.component';
 import { WithoutDiscountComponent } from './products/without-discount/without-discount.component';
+import { ReactiveLoginComponent } from './reactive-login/reactive-login.component';
+import { ReactiveRegisterComponent } from './reactive-register/reactive-register.component';
+import { NotesComponent } from './notes/notes.component';
 
 @NgModule({
   declarations: [
@@ -43,8 +46,17 @@ import { WithoutDiscountComponent } from './products/without-discount/without-di
     RegisterComponent,
     WithDiscountComponent,
     WithoutDiscountComponent,
+    ReactiveLoginComponent,
+    ReactiveRegisterComponent,
+    NotesComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

@@ -1,0 +1,131 @@
+<div class="row mt-3 justify-content-center">
+  <div class="col-md-6">
+    <div class="card shadow m-3 p-3 p-md-5">
+      <h3 class="display-5 mb-5">Register Form</h3>
+      <form [formGroup]="reactiveRegister">
+        <div class="mb-3">
+          <label for="name" class="form-label">Username</label>
+          <input
+            formControlName="name"
+            [class.is-invalid]="isInvalid(name)"
+            [class.is-valid]="isValid(name)"
+            type="email"
+            class="form-control"
+            id="name"
+          />
+        </div>
+        <!-- /////////////////////////////////////////// -->
+        <div
+          [hidden]="name?.valid || name?.untouched"
+          class="alert alert-danger"
+          role="alert"
+        >
+          <ng-container *ngIf="name?.errors?.['required']"
+            >Name? field is Required.</ng-container
+          >
+          <ng-container *ngIf="name?.errors?.['pattern']"
+            >Invalid, Name? must be chars only small or capital.</ng-container
+          >
+        </div>
+        <!--  -->
+        <div class="mb-3">
+          <label for="email" class="form-label">Email </label>
+          <input
+            formControlName="email"
+            [class.is-invalid]="isInvalid(email)"
+            [class.is-valid]="isValid(email)"
+            type="email"
+            class="form-control"
+            id="email"
+          />
+        </div>
+        <!-- /////////////////////////////////////////// -->
+        <div
+          [hidden]="email?.valid || email?.untouched"
+          class="alert alert-danger"
+          role="alert"
+        >
+          <ng-container *ngIf="email?.errors?.['required']"
+            >Email field is Required.</ng-container
+          >
+          <ng-container *ngIf="email?.errors?.['pattern']"
+            >Invalid, Please provide a valid Email.</ng-container
+          >
+        </div>
+        <!--  -->
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input
+            formControlName="password"
+            [class.is-invalid]="isInvalid(password)"
+            [class.is-valid]="isValid(password)"
+            type="password"
+            class="form-control"
+            id="password"
+          />
+        </div>
+        <!-- /////////////////////////////////////////// -->
+        <div
+          [hidden]="password?.valid || password?.untouched"
+          class="alert alert-danger"
+          role="alert"
+        >
+          <ng-container *ngIf="password?.errors?.['required']"
+            >Password field is Required.</ng-container
+          >
+          <ng-container *ngIf="password?.errors?.['minlength']"
+            >Confirm password must be between 3 and 5 chars.</ng-container
+          >
+        </div>
+        <!--  -->
+        <div class="mb-3">
+          <label for="confirmPassword" class="form-label"
+            >Confirm Password</label
+          >
+          <input
+            formControlName="confirmPassword"
+            [class.is-invalid]="isInvalid(confirmPassword) || reactiveRegister.errors?.['misMatch']"
+            [class.is-valid]="isValid(confirmPassword) && !reactiveRegister.errors?.['misMatch']"
+            type="password"
+            class="form-control"
+            id="confirmPassword"
+          />
+        </div>
+
+        <!-- reactiveRegister.errors?.['misMatch'] -->
+
+        <!-- /////////////////////////////////////////// -->
+        <div
+          [hidden]="
+          !reactiveRegister.errors?.['misMatch']&&
+            confirmPassword?.valid ||
+            confirmPassword?.untouched
+          "
+          class="alert alert-danger"
+          role="alert"
+        >
+          <ng-container *ngIf="confirmPassword?.errors?.['required']"
+            >Confirm Password field is Required.</ng-container
+          >
+          <ng-container *ngIf="confirmPassword?.errors?.['minlength']"
+            >Confirm password must be between 3 and 5 chars.</ng-container
+          >
+          <ng-container
+            *ngIf="!confirmPassword?.errors?.['required'] && !confirmPassword?.errors?.['minlength'] && reactiveRegister.errors?.['misMatch']"
+            >Confirm Password Don't match</ng-container
+          >
+        </div>
+
+        <button
+          [disabled]="reactiveRegister.invalid"
+          [class.btn-danger]="reactiveRegister.invalid"
+          [class.btn-success]="reactiveRegister.valid"
+          type="submit"
+          class="btn px-5"
+        >
+          Register
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

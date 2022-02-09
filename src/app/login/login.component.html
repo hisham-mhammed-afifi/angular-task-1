@@ -4,7 +4,7 @@
       <h3 class="display-5 mb-5">Login Form</h3>
       <form #loginForm="ngForm" (submit)="checkLogin()">
         <div class="mb-3">
-          <label for="email" class="form-label" pattern="pattern">Email </label>
+          <label for="email" class="form-label">Email </label>
           <input
             #email="ngModel"
             [class.is-invalid]="email.touched && email.invalid"

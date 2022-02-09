@@ -1,7 +1,7 @@
-<div class="row row-cols-2 g-4 mt-5">
+<div class="row row-cols row-cols-sm-2 g-4 mt-5">
   <!-- <app-product *ngFor="let product of productList" class="col"></app-product> -->
 
-  <div *ngFor="let product of products" class="col">
+  <div *ngFor="let product of products" class="col-12 col">
     <div appHighlight class="card">
       <img [src]="product.image" class="card-img-top" />
       <div class="card-body">
