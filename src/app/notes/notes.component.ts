@@ -1,11 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormArray,
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { ProductService } from 'src/app/services/product.service';
 import { forbidden } from '../custom/name.validator';
 import { IProduct } from '../sharedClassesAndTypes/IProduct';

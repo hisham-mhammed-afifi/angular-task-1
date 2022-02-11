@@ -73,8 +73,9 @@
           <ng-container *ngIf="password?.errors?.['required']"
             >Password field is Required.</ng-container
           >
-          <ng-container *ngIf="password?.errors?.['minlength']"
-            >Confirm password must be between 3 and 5 chars.</ng-container
+          <ng-container
+            *ngIf="password?.errors?.['minlength'] || password?.errors?.['maxlength']"
+            >Password must be between 3 and 5 chars.</ng-container
           >
         </div>
         <!--  -->
@@ -107,7 +108,8 @@
           <ng-container *ngIf="confirmPassword?.errors?.['required']"
             >Confirm Password field is Required.</ng-container
           >
-          <ng-container *ngIf="confirmPassword?.errors?.['minlength']"
+          <ng-container
+            *ngIf="confirmPassword?.errors?.['minlength'] || confirmPassword?.errors?.['maxlength']"
             >Confirm password must be between 3 and 5 chars.</ng-container
           >
           <ng-container

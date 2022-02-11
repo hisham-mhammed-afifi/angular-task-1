@@ -5,7 +5,7 @@
     <div appHighlight class="card">
       <img [src]="product.image" class="card-img-top" />
       <div class="card-body">
-        <a routerLink="./{{ product.id }}">
+        <a routerLink="/products/{{ product.id }}">
           <h5 class="card-title">{{ product.name | uppercase }}</h5>
         </a>
 

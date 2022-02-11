@@ -11,15 +11,7 @@ export class ReactiveRegisterComponent implements OnInit {
   reactiveRegister = this.fb.group(
     {
       name: ['', [Validators.required, Validators.pattern(/^[A-Za-z_ ]*$/)]],
-      email: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern(
-            /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
-          ),
-        ],
-      ],
+      email: ['', [Validators.required, Validators.email]],
       password: [
         '',
         [Validators.required, Validators.minLength(3), Validators.maxLength(5)],

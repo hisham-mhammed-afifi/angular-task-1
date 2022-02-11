@@ -71,23 +71,25 @@
         type="submit"
         class="btn btn-primary px-5 my-3"
       >
-        login
+        Submit
       </button>
     </form>
-    <button (click)="addComment()" class="btn btn-sm btn-success">
-      Add comment
-    </button>
     <div
       [formGroup]="notesForm"
-      *ngFor="let comment of comments['controls']"
+      *ngFor="let comment of comments['controls']; let i = index"
       class="my-3"
     >
+      <label for="comment{{ i + 1 }}">Comment #{{ i + 1 }}</label>
       <input
-        formControlName="name"
+        formControlName="comment"
         type="text"
         class="form-control"
         placeholder="Enter your comment..."
+        id="comment{{ i + 1 }}"
       />
     </div>
+    <button (click)="addComment()" class="btn btn-sm btn-success">
+      Add comment
+    </button>
   </div>
 </div>

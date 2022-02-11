@@ -8,15 +8,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class ReactiveLoginComponent implements OnInit {
   reactiveLogin = this.fb.group({
-    email: [
-      '',
-      [
-        Validators.required,
-        Validators.pattern(
-          /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
-        ),
-      ],
-    ],
+    email: ['', [Validators.required, Validators.email]],
     password: [
       '',
       [Validators.required, Validators.minLength(3), Validators.maxLength(5)],
