@@ -35,7 +35,7 @@ export class PostService {
       .get<IPost[]>(`https://jsonplaceholder.typicode.com/posts/${id}`)
       .pipe(
         catchError((err) => {
-          throw Error('عنك ايرور -- لو سمحت شوف ال URL');
+          throw Error('عندك ايرور -- لو سمحت شوف ال URL');
         })
       );
     return post;
