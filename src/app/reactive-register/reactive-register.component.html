@@ -24,7 +24,7 @@
             >Name? field is Required.</ng-container
           >
           <ng-container *ngIf="name?.errors?.['pattern']"
-            >Invalid, Name? must be chars only small or capital.</ng-container
+            >Invalid, Name must be chars only small or capital.</ng-container
           >
         </div>
         <!--  -->
@@ -48,7 +48,7 @@
           <ng-container *ngIf="email?.errors?.['required']"
             >Email field is Required.</ng-container
           >
-          <ng-container *ngIf="email?.errors?.['pattern']"
+          <ng-container *ngIf="email?.errors?.['email']"
             >Invalid, Please provide a valid Email.</ng-container
           >
         </div>
@@ -92,8 +92,6 @@
             id="confirmPassword"
           />
         </div>
-
-        <!-- reactiveRegister.errors?.['misMatch'] -->
 
         <!-- /////////////////////////////////////////// -->
         <div
